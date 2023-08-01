@@ -1,0 +1,19 @@
+<h1>Dish Show Page</h1><br><br>
+
+<p>Name: <%= @dish.name %></p>
+<p>Description: <%= @dish.description %></p>
+<p>By Chef: <%= @dish.chef.name %></p><hr><br>
+
+<h4>Ingredients:</h4><hr>
+<% @dish.ingredients.each do |ingredient| %>
+  <p><b><%= ingredient.name %></b></p>
+  <p>Calories: <%= ingredient.calories %></p>
+<% end %>
+
+<section id="add_ingredient">
+  <%= form_with url: "/dishes/#{@dish.id}/ingredients", method: :post, local: true do |f| %>
+    <%= f.label "Add an ingredient to this dish:" %>
+    <%= f.text_field :ingredient_id %>
+    <%= f.submit "Add an Ingredient" %>
+  <% end %>
+</section>
